@@ -1,0 +1,24 @@
+.Wrap {
+     width: 100%;
+  flex-direction: column;
+     margin: 5px;
+     padding: 5px;
+    display: flex;
+    align-items:center;
+justify-content: center;
+ }
+
+.Counter {
+
+    width: 20%;
+    margin: 5px;
+    text-align: center;
+}
+
+.Click {
+    margin-left: 5px;
+    padding: 5px
+}
+.say{
+    text-align: center;
+}

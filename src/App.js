@@ -30,7 +30,6 @@ class App extends React.Component {
     render = () => {
         debugger;
         return (
-
             <div>
                 <div className='App'>
                     <span className='name'>Здравствуй, меня зовут Арапов Евгений Владимирович</span>

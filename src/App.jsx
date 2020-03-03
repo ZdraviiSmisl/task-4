@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './App.css';
 import Greeting from './Components/Greetiing/Greeting';
 import SkillsComponent from './Components/Skills/SkillsComponent';
@@ -10,7 +9,7 @@ class App extends React.Component {
         counter: 1,
         names: [],
         skills: [{id: 1, title: 'teetotal'}, {id: 2, title: 'smoker'}, {id: 3, title: 'homebody'}],
-
+        addNameButtonStatus: false
     };
 
     addName = (userName) => {
@@ -25,7 +24,9 @@ class App extends React.Component {
             names: newNames, counter: this.state.counter + 1
         });
     };
-
+    changeStatusButton = () => {
+        this.setState({addNameButtonStatus: true})
+    }
 
     render = () => {
 
@@ -34,7 +35,9 @@ class App extends React.Component {
                 <div className='App'>
                     <span className='name'>Здравствуй, меня зовут Арапов Евгений Владимирович</span>
                     <h5 className='h5'>Я за минимализм</h5>
-                    <Greeting addName={this.addName} counter={this.state.counter}/>
+                    <Greeting addName={this.addName} counter={this.state.counter}
+                              changeStatusButton={this.changeStatusButton}
+                              addNameButtonStatus={this.state.addNameButtonStatus}/>
                     <SkillsComponent skills={this.state.skills}/>
                     <AddNewFriend names={this.state.names}/>
                 </div>

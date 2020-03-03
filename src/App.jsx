@@ -9,7 +9,7 @@ class App extends React.Component {
         counter: 1,
         names: [],
         skills: [{id: 1, title: 'teetotal'}, {id: 2, title: 'smoker'}, {id: 3, title: 'homebody'}],
-        addNameButtonStatus: false
+        addNameButtonStatus: true
     };
 
     addName = (userName) => {
@@ -21,11 +21,15 @@ class App extends React.Component {
         alert(`Ну,рассказывай ${userName}`);
         let newNames = [...this.state.names, newName];
         this.setState({
-            names: newNames, counter: this.state.counter + 1
+            names: newNames, counter: this.state.counter + 1, addNameButtonStatus: true
         });
     };
-    changeStatusButton = () => {
-        this.setState({addNameButtonStatus: true})
+    changeStatusButton = (checkName) => {
+        if (checkName === '') {
+            this.setState({addNameButtonStatus: true})
+        } else {
+            this.setState({addNameButtonStatus: false})
+        }
     }
 
     render = () => {

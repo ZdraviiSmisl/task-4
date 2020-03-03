@@ -15,9 +15,9 @@ class Greeting extends React.Component {
         this.props.addName(userName)
     };
     onChangeNameInput = () => {
-        if (this.newUserName.current.value === '') {
-            this.props.changeStatusButton()
-        }
+        let checkName = this.newUserName.current.value;
+        this.props.changeStatusButton(checkName)
+
     };
 
     render = () => {
@@ -28,8 +28,10 @@ class Greeting extends React.Component {
                 <span className={style.Counter}> {this.props.counter} </span>
                 <h3 className={style.say}>Ну,рассказывай,как тебя зовут или кличут?</h3>
                 <input ref={this.newUserName} onChange={this.onChangeNameInput}
-                       disabled={this.props.addNameButtonStatus}/>
-                <button className={style.Click} onClick={this.onAddNewUserNameClick}> hello</button>
+                />
+                <button className={style.Click} onClick={this.onAddNewUserNameClick}
+                        disabled={this.props.addNameButtonStatus}> hello
+                </button>
 
 
             </div>

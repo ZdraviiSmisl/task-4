@@ -10,7 +10,7 @@ const SkillsComponent = (props) => {
 
     return (
         <div className={style.skills}>
-            <h4 className={style.h4}>My Skills</h4>
+            <h4 className={style.h4}>My Skills:</h4>
             {skillElements}
         </div>
     );

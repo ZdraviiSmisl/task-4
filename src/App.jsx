@@ -1,51 +1,23 @@
 import React from 'react';
-import './App.css';
-import Greeting from './Components/Greetiing/Greeting';
-import SkillsComponent from './Components/Skills/SkillsComponent';
-import AddNewFriend from './Components/AddNewFriend/AddNewFriend';
+import style from './App.module.css';
+import Main from './Components/Main/Main';
+
+
 
 class App extends React.Component {
-    state = {
-        counter: 1,
-        names: [],
-        skills: [{id: 1, title: 'teetotal'}, {id: 2, title: 'smoker'}, {id: 3, title: 'homebody'}],
-        addNameButtonStatus: true
-    };
-
-    addName = (userName) => {
-        let newName = {
-            id: this.state.counter,
-            name: userName
-
-        };
-        alert(`Ну,рассказывай ${userName}`);
-        let newNames = [...this.state.names, newName];
-        this.setState({
-            names: newNames, counter: this.state.counter + 1, addNameButtonStatus: true
-        });
-    };
-    changeStatusButton = (checkName) => {
-        if (checkName === '') {
-            this.setState({addNameButtonStatus: true})
-        } else {
-            this.setState({addNameButtonStatus: false})
-        }
-    }
 
     render = () => {
 
         return (
-            <div>
-                <div className='App'>
-                    <span className='name'>Здравствуй, меня зовут Арапов Евгений Владимирович</span>
-                    <h5 className='h5'>Я за минимализм</h5>
-                    <Greeting addName={this.addName} counter={this.state.counter}
-                              changeStatusButton={this.changeStatusButton}
-                              addNameButtonStatus={this.state.addNameButtonStatus}/>
-                    <SkillsComponent skills={this.state.skills}/>
-                    <AddNewFriend names={this.state.names}/>
-                </div>
-            </div>
+
+<div className={style.App} >
+<Main/>
+</div>
+
+
+
+
+
         );
     };
 }

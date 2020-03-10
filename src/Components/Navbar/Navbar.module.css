@@ -1,0 +1,15 @@
+.WrapNavBar {
+display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    flex-direction: column;
+
+}
+.item a{
+   color:beige;
+
+}
+.item a.active {
+    color: #ff7c55
+
+}

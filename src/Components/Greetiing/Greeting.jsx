@@ -7,23 +7,23 @@ class Greeting extends React.Component {
         super(props);
 
     }
+
     state = {
         value: ''
-    }
+    };
 
 
     onAddNewUserNameClick = () => {
-        let userName = this.state.value
-        this.setState({value:''})
+        let userName = this.state.value;
+        this.setState({value: ''});
         this.props.addName(userName)
     };
     onChangeNameInput = (e) => {
         let checkName = e.currentTarget.value;
-        this.setState({value: checkName})
+        this.setState({value: checkName});
         this.props.changeStatusButton(checkName)
 
-    }
-
+    };
 
 
     render = () => {

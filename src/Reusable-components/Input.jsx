@@ -5,14 +5,12 @@ class Input extends React.Component {
     state = {
         error: false
 
-    }
-
-
+    };
 
 
     onPressEnter = (e) => {
         if (e.key === 'Enter') alert('ты клацнул по Enter');
-    }
+    };
 
     render() {
         return (

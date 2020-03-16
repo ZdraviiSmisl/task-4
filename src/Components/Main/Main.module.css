@@ -1,15 +1,17 @@
 .Wrap {
-     display: flex;
-     flex-wrap: wrap;
-     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
     justify-content: center;
-    flex-direction:row;
- }
-.b{
-    width:50px;
+    flex-direction: row;
+}
+
+.b {
+    width: 50px;
     height: 50px;
 }
-.b2{
+
+.b2 {
     width: 50px;
     height: 50px;
 }

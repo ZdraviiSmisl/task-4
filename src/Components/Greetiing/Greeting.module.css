@@ -1,12 +1,12 @@
 .Wrap {
-     width: 100%;
-  flex-direction: column;
-     margin: 5px;
-     padding: 5px;
+    width: 100%;
+    flex-direction: column;
+    margin: 5px;
+    padding: 5px;
     display: flex;
-    align-items:center;
-justify-content: center;
- }
+    align-items: center;
+    justify-content: center;
+}
 
 .Counter {
 
@@ -19,6 +19,7 @@ justify-content: center;
     margin-left: 5px;
     padding: 5px
 }
-.say{
+
+.say {
     text-align: center;
 }

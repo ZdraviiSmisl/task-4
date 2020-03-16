@@ -3,11 +3,15 @@ import style from './Monday.module.css';
 import Greeting from './../Greetiing/Greeting';
 import SkillsComponent from './../Skills/SkillsComponent';
 import AddNewFriend from './../AddNewFriend/AddNewFriend';
-class Monday extends React.Component{
+
+class Monday extends React.Component {
     state = {
         counter: 1,
         names: [],
-        skills: [{id: 1, title: 'Курящий спортсмен'}, {id: 2, title: 'Упор(ный)отый'}, {id: 3, title: 'Carolina Reaper-one love'}],
+        skills: [{id: 1, title: 'Курящий спортсмен'}, {id: 2, title: 'Упор(ный)отый'}, {
+            id: 3,
+            title: 'Carolina Reaper-one love'
+        }],
         addNameButtonStatus: true
     };
 
@@ -29,23 +33,25 @@ class Monday extends React.Component{
         } else {
             this.setState({addNameButtonStatus: false})
         }
-    }
-render() {
-    return (
-         <div>
-            <div className={style.Wrap}>
-                <span className={style.name}>Здравствуй, меня зовут Арапов Евгений Владимирович</span>
-                <h5 className={style.h5}>Я за минимализм</h5>
-                <Greeting addName={this.addName} counter={this.state.counter}
-                          changeStatusButton={this.changeStatusButton}
-                          addNameButtonStatus={this.state.addNameButtonStatus}/>
-                <SkillsComponent skills={this.state.skills}/>
-                <AddNewFriend names={this.state.names}/>
+    };
+
+    render() {
+        return (
+            <div>
+                <div className={style.Wrap}>
+                    <span className={style.name}>Здравствуй, меня зовут Арапов Евгений Владимирович</span>
+                    <h5 className={style.h5}>Я за минимализм</h5>
+                    <Greeting addName={this.addName} counter={this.state.counter}
+                              changeStatusButton={this.changeStatusButton}
+                              addNameButtonStatus={this.state.addNameButtonStatus}/>
+                    <SkillsComponent skills={this.state.skills}/>
+                    <AddNewFriend names={this.state.names}/>
+                </div>
             </div>
-        </div>
 
-    )
+        )
+    }
+
 }
 
-}
-       export default Monday;
+export default Monday;

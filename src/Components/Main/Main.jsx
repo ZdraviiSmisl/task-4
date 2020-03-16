@@ -9,12 +9,12 @@ import StartComponent from "../StartComponent/StartComponent";
 class Main extends React.Component {
     state = {
         isHidden: false
-    }
+    };
     onClickIsShow = () => {
         this.setState({isHidden: true})
     };
-    onClickIsHidden=()=>{
-        this.setState({isHidden:false})
+    onClickIsHidden = () => {
+        this.setState({isHidden: false})
     };
 
     render = () => {
@@ -28,7 +28,7 @@ class Main extends React.Component {
 
                     {!this.state.isHidden && <button className={style.b} onClick={this.onClickIsShow}>hide</button>}
                     {this.state.isHidden && <button className={style.b2} onClick={this.onClickIsHidden}>show</button>}
-                  {/*  <Route path='/' render={() => <StartComponent/>}/>*/}
+                    {/*  <Route path='/' render={() => <StartComponent/>}/>*/}
                     <Route path='/Monday' render={() => <Monday/>}/>
                     <Route path='/tuesday' render={() => <Tuesday/>}/>
                     <Route path='/wednesday' render={() => <StartComponent/>}/>

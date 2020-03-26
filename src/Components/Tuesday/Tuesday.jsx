@@ -55,9 +55,9 @@ class Tuesday extends React.Component {
         }, () => saveState(this.state));
 
     };
-/*selectPriority=()=>{
-
-}*/
+changePriority=(taskId,priority)=>{
+this.changeTask(taskId,{priority:priority})
+};
 
     changeFilter = (newFilterValue) => {
         this.setState({
@@ -74,7 +74,7 @@ class Tuesday extends React.Component {
     };
 
     changeTask = (taskId, obj) => {
-
+        debugger
         let newTasks = this.state.tasks.map(t => {
             if (t.id === taskId) {
                 return {...t, ...obj};
@@ -99,7 +99,7 @@ class Tuesday extends React.Component {
                         < div className={style.todoList}>
                             <TodoListHeader addTask={this.addTask}/>
                             <TodoListTasks
-                               /* addTask={this.addTask}*/
+                                changePriority={this.changePriority}
                                 removeTask={this.removeTask}
                                 changeTitle={this.changeTitle}
                                 changeStatus={this.changeStatus}

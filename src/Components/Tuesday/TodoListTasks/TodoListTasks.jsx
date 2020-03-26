@@ -12,6 +12,7 @@ class TodoListTasks extends React.Component {
             <TodoListTask
                 key={task.id}
                 task={task}
+               /* addTask={this.props.addTask}*/
                 removeTask={this.props.removeTask}
                 changeStatus={this.props.changeStatus}
                 changeTitle={this.props.changeTitle}

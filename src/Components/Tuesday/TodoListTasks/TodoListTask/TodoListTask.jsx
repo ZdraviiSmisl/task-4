@@ -4,10 +4,10 @@ import style from './TodoListTask.module.css';
 
 class TodoListTask extends React.Component {
     state = {
-        editMode: false
+        editMode: false,
+        selectedPriority:'low'
     };
     onIsDoneChanged = (e) => {
-
         this.props.changeStatus(this.props.task.id, e.currentTarget.checked);
     };
     activatedEditMode = () => {
@@ -21,6 +21,10 @@ class TodoListTask extends React.Component {
     };
     clickForDel = () => {
         this.props.removeTask(this.props.task.id);
+    };
+    togglePriority=(e)=>{
+let priority=e.target.value;
+this.setState({selectedPriority:priority});
     };
 
     render() {
@@ -38,9 +42,12 @@ class TodoListTask extends React.Component {
                                      onChange={this.onTitleChanged}>{this.props.task.id} :{this.props.task.title},</span>
 
                 }
-
-
-                <span> priority:{this.props.task.priority}</span>
+                    <select value={this.state.selectedPriority} onChange={this.togglePriority}>
+                        <option value="high">high</option>
+                        <option value="low">low</option>
+                        <option value="middle">middle</option>
+                    </select>
+                {/* <span> priority:{this.props.task.priority}</span>*/}
                 <span><button onClick={this.clickForDel}>Del</button></span>
 
             </div>

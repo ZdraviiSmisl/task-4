@@ -4,6 +4,7 @@ import {saveState, restoreState} from '../../OutsideComponents/LocalStorage';
 import TodoListHeader from "./TodoListHeader/TodoListHeader";
 import TodoListTasks from "./TodoListTasks/TodoListTasks";
 import TodoListFooter from "./TodoListFooter/TodoListFooter";
+import Preloader from "../../OutsideComponents/Preloader/Preloader";
 
 class Tuesday extends React.Component {
     constructor(props) {
@@ -13,6 +14,7 @@ class Tuesday extends React.Component {
     }
 
     nextTaskId = 0;
+
     state = {
         tasks: [
             /* {id:0,title: "JS", isDone: true, priority: "high"},
@@ -20,8 +22,19 @@ class Tuesday extends React.Component {
              {id:2,title: "CSS", isDone: true, priority: "medium"},
              {id:3,title: "REACT", isDone: false, priority: "high"}*/
         ],
-        filterValue: "All"
+        filterValue: "All",
+        loading: true
     };
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({loading: false});
+        }, 3000);
+        let state = restoreState();
+        this.setState(state)
+
+    }
+
     removeTask = (taskId) => {
         let filterTasks = this.state.tasks.filter(
             t => t.id !== taskId
@@ -42,6 +55,9 @@ class Tuesday extends React.Component {
         }, () => saveState(this.state));
 
     };
+/*selectPriority=()=>{
+
+}*/
 
     changeFilter = (newFilterValue) => {
         this.setState({
@@ -73,42 +89,40 @@ class Tuesday extends React.Component {
         )
     };
 
-    componentDidMount() {
-        let state = restoreState();
-        this.setState(state)
-    }
-
 
     render() {
         return (
-            <div className={style.Wrap}>
-                <div className={style.todoList}>
-                    <TodoListHeader addTask={this.addTask}/>
 
-                    <TodoListTasks
-                        removeTask={this.removeTask}
-                        changeTitle={this.changeTitle}
-                        changeStatus={this.changeStatus}
-                        tasks={this.state.tasks.filter(t => {
-                            switch (this.state.filterValue) {
-                                case 'Active':
-                                    return !t.isDone;
-                                case 'Completed':
-                                    return t.isDone;
-                                case 'All':
-                                    return true;
-                                default:
-                                    return true;
-                            }
+            <>
+                {this.state.loading ? (<Preloader/>) :
+                    (< div className={style.Wrap}>
+                        < div className={style.todoList}>
+                            <TodoListHeader addTask={this.addTask}/>
+                            <TodoListTasks
+                               /* addTask={this.addTask}*/
+                                removeTask={this.removeTask}
+                                changeTitle={this.changeTitle}
+                                changeStatus={this.changeStatus}
+                                tasks={this.state.tasks.filter(t => {
+                                    switch (this.state.filterValue) {
+                                        case 'Active':
+                                            return !t.isDone;
+                                        case 'Completed':
+                                            return t.isDone;
+                                        case 'All':
+                                            return true;
+                                        default:
+                                            return true;
+                                    }
+                                })}/>
+                            <TodoListFooter filterValue={this.state.filterValue}
+                                            changeFilter={this.changeFilter}/>
+                        </div>
+                    </div>)}
 
-                        })}/>
-                    <TodoListFooter filterValue={this.state.filterValue}
-                                    changeFilter={this.changeFilter}/>
-
-
-                </div>
-            </div>
+            </>
         )
+
     }
 
 }

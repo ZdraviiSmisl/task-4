@@ -21,10 +21,8 @@ class TodoListFooter extends React.Component {
 
     onClickIsShow = () => {
         this.setState({isHidden: true})
-
     };
     render = () => {
-
         let classForAll = this.props.filterValue === 'All' ? style.filterActive : '';
         let classForCompleted = this.props.filterValue === 'Completed' ? style.filterActive : '';
         let classForActive = this.props.filterValue === 'Active' ? style.filterActive : '';
@@ -40,21 +38,15 @@ class TodoListFooter extends React.Component {
                     </button>
                     <button className={classForActive}
                             onClick={this.onActiveFilterClick}>Active
-
                     </button>
                 </div>}
                 {!this.state.isHidden && <span onClick={this.onClickIsShow}>hide</span>}
                 {this.state.isHidden && <span onClick={this.onClickIsHidden}>show</span>}
-
             </div>
-
-
         );
     }
 }
-
 export default TodoListFooter;
-
 TodoListFooter.propTypes = {
     filterValue: PropTypes.string
 };

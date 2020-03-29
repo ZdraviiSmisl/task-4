@@ -4,34 +4,25 @@ import PropTypes from 'prop-types';
 import style from './TodoListTasks.module.css'
 
 class TodoListTasks extends React.Component {
-
     render = () => {
-
         let tasksElements = this.props.tasks.map(task =>
-
             <TodoListTask
                 key={task.id}
                 task={task}
-               /* addTask={this.props.addTask}*/
                 removeTask={this.props.removeTask}
                 changeStatus={this.props.changeStatus}
                 changeTitle={this.props.changeTitle}
                 changePriority={this.props.changePriority}
             />);
-
-
         return (
-
             <div className={style.todoListTasks}>
                 {tasksElements}
             </div>
-
         );
     }
 }
 
 export default TodoListTasks;
-
 TodoListTasks.propTypes = {
     tasks: PropTypes.array
 };

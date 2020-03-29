@@ -1,6 +1,6 @@
 .Wrap {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: 100%;
     justify-content: center;
     flex-direction: row;

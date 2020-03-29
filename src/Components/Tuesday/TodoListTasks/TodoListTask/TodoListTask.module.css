@@ -1,3 +1,15 @@
 .todoListTask.done {
     opacity: 0.5;
 }
+.low {
+    color: #ff7c55;
+}
+.middle {
+    color: lightskyblue;
+}
+.high {
+    color: red;
+}
+.wrap_task {
+    margin-bottom: 15px;
+}

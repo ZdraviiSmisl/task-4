@@ -8,7 +8,8 @@ class TodoListHeader extends React.Component {
         inputEmptyDisable: false
     };
     onAddTaskClick = () => {
-        let newTitle = this.state.title !== '' ? this.state.title : this.setState({inputEmptyDisable: true});
+        let newTitle = this.state.title !== '' ? this.state.title :
+            this.setState({inputEmptyDisable: true});
         this.state.title = '';
         if (newTitle === '') {
             this.setState({error: true})

@@ -1,9 +1,10 @@
 .Wrap {
     background-color: teal;
+    width: 850px;
 }
 
 .todoList {
-    width: 500px;
+    width: 600px;
     margin: 0 auto;
 }
 

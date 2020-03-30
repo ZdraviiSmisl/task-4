@@ -1,4 +1,6 @@
-.Wrap {
+.wrap {
+    display: flex;
+    flex-wrap: nowrap;
     background-color: teal;
     width: 850px;
 }

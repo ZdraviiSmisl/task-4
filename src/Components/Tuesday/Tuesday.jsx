@@ -52,7 +52,7 @@ class Tuesday extends React.Component {
 
     render() {
         const todoListsElements = this.state.todolists.map(
-            tl => <Todolist id={tl.id} title={tl.title}/>);
+            tl => <Todolist key={tl.id} id={tl.id} title={tl.title}/>);
         return (
             <>
                 {this.state.loading ? <Preloader/> :

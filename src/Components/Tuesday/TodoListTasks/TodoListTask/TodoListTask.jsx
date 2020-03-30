@@ -35,9 +35,9 @@ class TodoListTask extends React.Component {
             ? style.middle : this.props.task.priority === 'high' ? style.high : '';
 
         return (
-           /* <Tooltip placement="top-start" title={`created: ${this.props.task.created}
-             updated: ${this.props.task.updated}
-             finished: ${this.props.task.finished} `}>*/
+            /* <Tooltip placement="top-start" title={`created: ${this.props.task.created}
+              updated: ${this.props.task.updated}
+              finished: ${this.props.task.finished} `}>*/
             <CustomizedTooltips created={this.props.task.created}
                                 updated={this.props.task.updated}
                                 finished={this.props.task.finished}>
@@ -48,12 +48,12 @@ class TodoListTask extends React.Component {
                                onChange={this.onIsDoneChanged}
                         />
                         {this.state.editMode ?
-                            <input className={changePriorityClass}
-                                   autoFocus={true}
+                            <input autoFocus={true}
                                    onBlur={this.deactivatedEditMode}
                                    onChange={this.onTitleChanged}/>
                             :
-                            <span onClick={this.activatedEditMode}>{this.props.task.id} {this.props.task.title} </span>
+                            <span onClick={this.activatedEditMode}
+                                  className={changePriorityClass}>{this.props.task.id} {this.props.task.title} </span>
                         }
                         <select value={this.props.task.priority} onChange={this.togglePriority}>
                             <option value="high">high</option>

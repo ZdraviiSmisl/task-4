@@ -1,4 +1,4 @@
-.WrapNavBar {
+.wrapNavBar {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -14,4 +14,8 @@
 .item a.active {
     color: #ff7c55
 
+}
+
+.menu {
+    width: 20%;
 }

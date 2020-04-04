@@ -28,11 +28,10 @@ class TodoListHeader extends React.Component {
     };
 
     render = () => {
-
         return (
 
             <div className={style.todoListHeader}>
-                <h3 className={style.todoListHeaderTitle}>What to Learn</h3>
+                <h3 className={style.todoListHeaderTitle}>{this.props.title}</h3>
                 <div className={style.todoListNewTaskForm}>
                     <input onKeyPress={this.onPressEnter}
                            onChange={this.onAddText}

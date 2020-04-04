@@ -60,7 +60,7 @@ class TodoListTask extends React.Component {
                             <option value="low">low</option>
                             <option value="middle">middle</option>
                         </select>
-                        <span><button onClick={this.clickForDel}>Del</button></span>
+                        <span><button onClick={this.clickForDel}>X</button></span>
                     </div>
                 </div>
             </CustomizedTooltips>

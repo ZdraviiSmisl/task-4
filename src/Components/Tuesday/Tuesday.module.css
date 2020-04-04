@@ -1,12 +1,24 @@
 .wrap {
     display: flex;
-    flex-wrap: nowrap;
+    flex-direction: column;
     background-color: teal;
-    width: 850px;
-}
+    width: 75%;
+    height: 100vh;
+    overflow: hidden;
 
+}
+.wrap_todolists  {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    overflow-y: auto;
+}
 .todoList {
-    width: 600px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
     margin: 0 auto;
 }
 

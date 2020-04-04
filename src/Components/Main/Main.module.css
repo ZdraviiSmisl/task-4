@@ -1,4 +1,4 @@
-.Wrap {
+.wrap {
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
@@ -14,4 +14,9 @@
 .b2 {
     width: 50px;
     height: 50px;
+}
+
+.nav {
+    flex-direction: column;
+    padding-right: 30px;
 }

@@ -4,24 +4,28 @@ import {LocalStorage} from "../../OutsideComponents/LocalStorage";
 import Preloader from "../../OutsideComponents/Preloader/Preloader";
 import AddNewItemForm from "./AddNewItemForm/AddNewItemForm";
 import Todolist from "./Todolist/Todolist";
+import {connect} from "react-redux";
 
 class Tuesday extends React.Component {
     constructor(props) {
         super(props);
     }
 
+    nextTodolistId = 0;
     state = {
-        todolists: [
+        todoLists: [
             {
                 title: 'every day',
                 id: 1
             }
         ],
-        loading:true
+        loading: true,
+
     };
 
     componentDidMount() {
         setTimeout(() => {
+            this.props.loadContent();
             this.setState({loading: false});
         }, 3000);
         this.restoreState();
@@ -31,36 +35,42 @@ class Tuesday extends React.Component {
         LocalStorage.saveTodoLists(this.state);
     };
 
+
     restoreState = () => {
-        let todolists = LocalStorage.getTodoLists();
-        debugger
-        if (todolists != null) {
-            this.setState(todolists);
+        let todoLists = LocalStorage.getTodoLists();
+        if (todoLists != null) {
+            this.setState(todoLists);
         }
     };
 
-    onAddTodoList = (value) => {
-        let lastElementIndex = this.state.todolists.length - 1;
-        let nexId = this.state.todolists[lastElementIndex].id + 1;
+    onAddTodoList = (title) => {
+        /*let lastElementIndex = this.props.todolists.length - 1;
+        let nextId = this.props.todolists[lastElementIndex].id + 1;*/
         const newTodoList = {
-            title: value,
-            id: nexId
+            title: title,
+            id: this.props.nextTodolistId,
+            tasks: []
         };
-        const todolists = [...this.state.todolists, newTodoList];
-        this.setState({todolists: todolists}, () => this.saveState())
+
+        /*const todolists = [...this.state.todolists, newTodoList];
+        this.setState({todolists: todolists}, () => this.saveState())*/
+        this.props.addTodoList(newTodoList);
+        this.nextTodolistId++;
     };
 
     render() {
-        const todoListsElements = this.state.todolists.map(
-            tl => <Todolist key={tl.id} id={tl.id} title={tl.title}/>);
+
+        const todoListsElements = this.props.todoLists.map(
+            tl => <Todolist key={tl.id} id={tl.id} title={tl.title} tasks={tl.tasks}
+            />);
         return (
             <>
-                {this.state.loading ? <Preloader/> :
+                {this.props.loading ? <Preloader/> :
                     <div className={style.wrap}>
                         <div>
                             <AddNewItemForm addItem={this.onAddTodoList}/>
                         </div>
-                        <div className={style.wrap}>
+                        <div className={style.wrap_todolists}>
                             {todoListsElements}
                         </div>
                     </div>
@@ -73,5 +83,37 @@ class Tuesday extends React.Component {
     }
 }
 
+let mapStateToProps = (state) => {
 
-export default Tuesday;
+    return {
+        todoLists: state.todoLists,
+        nextTodolistId: state.nextTodolistId,
+        loading: state.loading
+    }
+
+};
+
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addTodoList: (newTodoList) => {
+
+            const action = {
+                type: 'ADD-TODOLIST',
+                newTodoList: newTodoList
+            };
+
+            dispatch(action)
+        },
+    loadContent:()=>{
+            const action={
+                type:'SET_LOADING'
+            };
+        dispatch(action)
+    }
+
+    }
+};
+const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(Tuesday);
+export default ConnectedApp;
+

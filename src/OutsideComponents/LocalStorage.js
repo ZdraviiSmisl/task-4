@@ -6,7 +6,7 @@ export const LocalStorage = {
         localStorage.setItem('todolists', stateToString);*/
     },
     getTodoLists() {
-        debugger
+
         return this._get('todolists');
 
         /*let stateToString = localStorage.getItem('todolists');
@@ -33,11 +33,11 @@ export const LocalStorage = {
         localStorage.setItem(key, stateToString);
     },
     _get(key) {
-        debugger
+
         let stateToString = localStorage.getItem(key);
         if (stateToString != null) {
             let state = JSON.parse(stateToString);
-            debugger
+
             return state;
         }
         return null;

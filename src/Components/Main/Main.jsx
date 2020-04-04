@@ -21,19 +21,27 @@ class Main extends React.Component {
 
         return (
             <HashRouter>
-                <div className={style.Wrap}>
-                    {!this.state.isHidden && <div>
-                        <NavBar/>
-                    </div>}
+                <div className={style.wrap}>
+                    <div className={style.nav}>
+                        {!this.state.isHidden && <div>
+                            <NavBar/>
+                        </div>}
 
-                    {!this.state.isHidden && <button className={style.b} onClick={this.onClickIsShow}>hide</button>}
-                    {this.state.isHidden && <button className={style.b2} onClick={this.onClickIsHidden}>show</button>}
+                        {!this.state.isHidden &&
+                        <button className={style.b}
+                                onClick={this.onClickIsShow}>hide</button>}
+                        {this.state.isHidden
+                        && <button className={style.b2}
+                                   onClick={this.onClickIsHidden}>show</button>}
+                    </div>
+
                     {/*  <Route path='/' render={() => <StartComponent/>}/>*/}
                     <Route path='/Monday' render={() => <Monday/>}/>
                     <Route path='/tuesday' render={() => <Tuesday/>}/>
                     <Route path='/wednesday' render={() => <StartComponent/>}/>
                     <Route path='/thursday' render={() => <StartComponent/>}/>
                     <Route path='/friday' render={() => <StartComponent/>}/>
+
 
                 </div>
 

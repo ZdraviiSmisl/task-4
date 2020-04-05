@@ -43,24 +43,25 @@ class TodoListTask extends React.Component {
                                 finished={this.props.task.finished}>
                 <div className={style.wrap_task}>
                     <div className={taskClass}>
-                        <input type='checkbox'
+                        <input className={style.checkbox__class} type='checkbox'
                                checked={this.props.task.isDone}
                                onChange={this.onIsDoneChanged}
                         />
                         {this.state.editMode ?
-                            <input autoFocus={true}
+                            <input className={style.input} autoFocus={true}
                                    onBlur={this.deactivatedEditMode}
                                    onChange={this.onTitleChanged}/>
                             :
                             <span onClick={this.activatedEditMode}
                                   className={changePriorityClass}>{this.props.task.id} {this.props.task.title} </span>
                         }
-                        <select value={this.props.task.priority} onChange={this.togglePriority}>
+                        <select className={style.select__class} value={this.props.task.priority}
+                                onChange={this.togglePriority}>
                             <option value="high">high</option>
                             <option value="low">low</option>
                             <option value="middle">middle</option>
                         </select>
-                        <span><button onClick={this.clickForDel}>X</button></span>
+                        <button className={style.delete__task} onClick={this.clickForDel}>X</button>
                     </div>
                 </div>
             </CustomizedTooltips>

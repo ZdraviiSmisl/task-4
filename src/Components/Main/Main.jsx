@@ -21,9 +21,9 @@ class Main extends React.Component {
 
         return (
             <HashRouter>
-                <div className={style.wrap}>
+                <div className={style.wrap_main}>
                     <div className={style.nav}>
-                        {!this.state.isHidden && <div>
+                        {!this.state.isHidden && <div className={style.wrap_wrap_navbar}>
                             <NavBar/>
                         </div>}
 

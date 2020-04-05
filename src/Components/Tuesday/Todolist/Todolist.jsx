@@ -131,7 +131,9 @@ class Todolist extends React.Component {
                         })}/>
                     <TodoListFooter filterValue={this.state.filterValue}
                                     changeFilter={this.changeFilter}/>
-                    <span><button onClick={this.removeList}>X</button></span>
+                    <span className={style.button_delete}>
+                        <button onClick={this.removeList}>X</button>
+                    </span>
                 </div>
             </div>
         )

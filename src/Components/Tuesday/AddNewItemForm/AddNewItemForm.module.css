@@ -1,6 +1,8 @@
 
 .todoList_newTaskForm{
-
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px
 }
 
 .error {

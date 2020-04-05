@@ -1,4 +1,4 @@
-.wrap {
+.wrap_main {
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
@@ -17,6 +17,12 @@
 }
 
 .nav {
+    width: 20%;
+    align-items: center;
+    display: flex;
     flex-direction: column;
-    padding-right: 30px;
+}
+
+.wrap_wrap_navbar {
+    height: 60%;
 }

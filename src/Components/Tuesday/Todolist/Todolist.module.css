@@ -3,4 +3,16 @@
     flex-direction: column;
     width: 300px;
     margin: 0 auto;
+    position: relative;
+    box-sizing: border-box;
+    border: 1px solid mediumspringgreen;
+
+
+    padding: 5px;
+
+}
+.button_delete {
+    position: absolute;
+    top: -2px;
+    right: 1px;
 }

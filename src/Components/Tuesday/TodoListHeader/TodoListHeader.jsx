@@ -33,13 +33,13 @@ class TodoListHeader extends React.Component {
             <div className={style.todoListHeader}>
                 <h3 className={style.todoListHeaderTitle}>{this.props.title}</h3>
                 <div className={style.todoListNewTaskForm}>
-                    <input onKeyPress={this.onPressEnter}
+                    <input  onKeyPress={this.onPressEnter}
                            onChange={this.onAddText}
                            className={this.state.error ? style.error : ''}
                            type="text"
                            placeholder="New task name"
                            value={this.state.title}/>
-                    <button onClick={this.onAddTaskClick} disabled={this.state.inputEmptyDisable}>Add</button>
+                    <button className={style.add} onClick={this.onAddTaskClick} disabled={this.state.inputEmptyDisable}>Add</button>
 
                 </div>
             </div>

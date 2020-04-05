@@ -2,12 +2,13 @@
     display: flex;
     flex-direction: column;
     background-color: teal;
-    width: 75%;
+    width: 80%;
     height: 100vh;
     overflow: hidden;
-
+    padding: 50px 20px;
 }
-.wrap_todolists  {
+
+.wrap_todolists {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -15,6 +16,7 @@
     overflow: hidden;
     overflow-y: auto;
 }
+
 .todoList {
     display: flex;
     flex-direction: column;

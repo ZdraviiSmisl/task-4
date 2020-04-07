@@ -1,42 +1,20 @@
 import {createStore} from "redux";
 
 const initialState = {
-    todoLists: [
-      /*  {
-            "title": "every day", "id": 1, tasks:
-                [{
-                    "id": 0, "title": "fddf",
-                    "isDone": false, "priority": "low",
-                    "created": "Fri Apr 03 2020 13:24:46 GMT+0300 (Москва, стандартное время)",
-                    "updated": "", "finished": ""
-                }]
-        },
-        {
-            "title": "sdfsdf", "id": 2, tasks:
-                [{
-                    "id": 0, "title": "dfdf",
-                    "isDone": false, "priority": "high",
-                    "created": "Fri Apr 03 2020 13:24:50 GMT+0300 (Москва, стандартное время)",
-                    "updated": "", "finished": ""
-                }]
-        }*/
-    ],
+    todoLists: [],
     loading: true,
     nextTodolistId: 0
 };
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD-TODOLIST':
-            /*let state={...state,
-                todoLists: [...state.todoLists, action.newTodoList]}*/
-
             return {
                 ...state,
                 todoLists: [...state.todoLists, action.newTodoList],
                 nextTodolistId: state.nextTodolistId + 1
             };
-        case 'ADD-TASK':
 
+        case 'ADD-TASK':
             return {
                 ...state,
                 todoLists: state.todoLists.map(tl => {

@@ -10,29 +10,12 @@ class Todolist extends React.Component {
 
     nextTaskId = 0;
     state = {
-        tasks: [
-            /*{id:0,title: "JS", isDone: true, priority: "high"},
-            {id:1,title: "HTML", isDone: true, priority: "low"},
-            {id:2,title: "CSS", isDone: true, priority: "medium"},
-            {id:3,title: "REACT", isDone: false, priority: "high"}*/
-        ],
+        tasks: [],
         filterValue: "All",
 
     };
 
     componentDidMount() {
-        this.restoreState();
-    };
-
-    saveState = () => {
-        LocalStorage.saveTasks(this.state, this.props.id);
-    };
-
-    restoreState = () => {
-        let tasks = LocalStorage.getTasks();
-        if (tasks !== null) {
-            this.setState(tasks);
-        }
     };
 
     removeTask = (taskId) => {
@@ -40,9 +23,8 @@ class Todolist extends React.Component {
             t => t.id !== taskId
         );
         this.props.deleteTask(taskId, this.props.id)
-        /*this.setState({tasks: filterTasks}, () => this.saveState(this.state));*/
-
     };
+
     addTask = (newTitle) => {
         let whenCreatedTask = new Date();
         let newTask = {
@@ -54,22 +36,12 @@ class Todolist extends React.Component {
             updated: '',
             finished: ''
         };
-
-        /*let newTasks = [...this.state.tasks, newTask];
-        this.setState({
-            tasks: newTasks,
-            nextTaskId: this.state.nextTaskId + 1
-        }, () => this.saveState(this.state));*/
-
         this.props.add_Task(newTask, this.props.id);
         this.nextTaskId++;
 
     };
 
     removeList = () => {
-        /*  let filterList = this.state.todoLists.filter(
-              l => l.id !== todoListId);*/
-
         this.props.deleteList(this.props.id);
     };
 
@@ -80,7 +52,7 @@ class Todolist extends React.Component {
     changeFilter = (newFilterValue) => {
         this.setState({
             filterValue: newFilterValue
-        }, () => this.saveState(this.state))
+        },)
     };
 
     changeStatus = (taskId, isDone) => {
@@ -102,11 +74,9 @@ class Todolist extends React.Component {
             }
         });
         this.props.change_Task(taskId, obj, this.props.id)
-        /*  this.setState({
-                  tasks: newTasks
-              }, () => this.saveState(this.state)
-          )*/
+
     };
+
     render() {
         return (
             < div className={style.wrap}>
@@ -139,6 +109,7 @@ class Todolist extends React.Component {
         )
     }
 }
+
 let mapDispatchToProps = (dispatch) => {
     return {
         add_Task: (newTask, todoListId) => {
@@ -182,3 +153,15 @@ let mapDispatchToProps = (dispatch) => {
 };
 const ConnectedTodolist = connect(null, mapDispatchToProps)(Todolist);
 export default ConnectedTodolist;
+
+
+/* saveState = () => {
+        LocalStorage.saveTasks(this.state, this.props.id);
+    };
+*/
+/* restoreState = () => {
+     let tasks = LocalStorage.getTasks();
+     if (tasks !== null) {
+         this.setState(tasks);
+     }
+ };*/

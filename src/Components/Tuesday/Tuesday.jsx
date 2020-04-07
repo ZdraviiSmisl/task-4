@@ -28,32 +28,16 @@ class Tuesday extends React.Component {
             this.props.loadContent();
             this.setState({loading: false});
         }, 3000);
-        this.restoreState();
     }
 
-    saveState = () => {
-        LocalStorage.saveTodoLists(this.state);
-    };
 
-
-    restoreState = () => {
-        let todoLists = LocalStorage.getTodoLists();
-        if (todoLists != null) {
-            this.setState(todoLists);
-        }
-    };
 
     onAddTodoList = (title) => {
-        /*let lastElementIndex = this.props.todolists.length - 1;
-        let nextId = this.props.todolists[lastElementIndex].id + 1;*/
         const newTodoList = {
             title: title,
             id: this.props.nextTodolistId,
             tasks: []
         };
-
-        /*const todolists = [...this.state.todolists, newTodoList];
-        this.setState({todolists: todolists}, () => this.saveState())*/
         this.props.addTodoList(newTodoList);
         this.nextTodolistId++;
     };
@@ -93,7 +77,6 @@ let mapStateToProps = (state) => {
 
 };
 
-
 let mapDispatchToProps = (dispatch) => {
     return {
         addTodoList: (newTodoList) => {
@@ -117,3 +100,14 @@ let mapDispatchToProps = (dispatch) => {
 const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(Tuesday);
 export default ConnectedApp;
 
+/* saveState = () => {
+       LocalStorage.saveTodoLists(this.state);
+   };*/
+
+
+/* restoreState = () => {
+     let todoLists = LocalStorage.getTodoLists();
+     if (todoLists != null) {
+         this.setState(todoLists);
+     }
+ };*/

@@ -12,10 +12,18 @@
 
 .middle {
     color: lightskyblue;
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .high {
     color: red;
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .wrap_task {

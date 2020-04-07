@@ -2,7 +2,7 @@
 .todoList_newTaskForm{
     display: flex;
     justify-content: center;
-    margin-bottom: 50px
+    margin: 50px 0;
 }
 
 .error {

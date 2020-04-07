@@ -21,7 +21,7 @@ class Main extends React.Component {
 
         return (
             <HashRouter>
-                <div className={style.wrap_main}>
+                <div className={style.wrap__main}>
                     <div className={style.nav}>
                         {!this.state.isHidden && <div className={style.wrap_wrap_navbar}>
                             <NavBar/>
@@ -34,14 +34,13 @@ class Main extends React.Component {
                         && <button className={style.b2}
                                    onClick={this.onClickIsHidden}>show</button>}
                     </div>
-
-                    {/*  <Route path='/' render={() => <StartComponent/>}/>*/}
-                    <Route path='/Monday' render={() => <Monday/>}/>
-                    <Route path='/tuesday' render={() => <Tuesday/>}/>
-                    <Route path='/wednesday' render={() => <StartComponent/>}/>
-                    <Route path='/thursday' render={() => <StartComponent/>}/>
-                    <Route path='/friday' render={() => <StartComponent/>}/>
-
+                    <div className={style.wrap__days}>        {/*  <Route path='/' render={() => <StartComponent/>}/>*/}
+                        <Route path='/Monday' render={() => <Monday/>}/>
+                        <Route path='/tuesday' render={() => <Tuesday/>}/>
+                        <Route path='/wednesday' render={() => <StartComponent/>}/>
+                        <Route path='/thursday' render={() => <StartComponent/>}/>
+                        <Route path='/friday' render={() => <StartComponent/>}/>
+                    </div>
 
                 </div>
 

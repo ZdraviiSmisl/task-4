@@ -1,9 +1,9 @@
-.wrap_main {
+.wrap__main {
     display: flex;
-    flex-wrap: nowrap;
     width: 100%;
-    justify-content: center;
-    flex-direction: row;
+    justify-content: space-between;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .b {
@@ -16,13 +16,22 @@
     height: 50px;
 }
 
+
 .nav {
     width: 20%;
-    align-items: center;
+    height: 100vh;
     display: flex;
+    align-items: center;
     flex-direction: column;
 }
 
+.wrap__days {
+    width: 80%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .wrap_wrap_navbar {
     height: 60%;
 }

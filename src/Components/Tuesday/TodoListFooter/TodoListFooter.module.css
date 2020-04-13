@@ -13,5 +13,7 @@
 }
 
 .button__show {
-    width: 16%;
+    width: 69px;
+    height: 30px;
+    float: right;
 }

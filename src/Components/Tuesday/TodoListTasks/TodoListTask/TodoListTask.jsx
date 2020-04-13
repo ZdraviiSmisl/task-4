@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from './TodoListTask.module.css';
-import {Tooltip} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
 import CustomizedTooltips from "../../../../OutsideComponents/Tooltip/Tooltipe";
 
 class TodoListTask extends React.Component {
@@ -30,7 +28,7 @@ class TodoListTask extends React.Component {
     };
 
     render() {
-        let taskClass = this.props.task.isDone ? style.todoListTask + '' + style.done : style.todoListTask;
+        let taskClass = this.props.task.isDone ? `${style.todoListTask} ${style.done}` : style.todoListTask;
         let changePriorityClass = this.props.task.priority === 'low' ? style.low : this.props.task.priority === 'middle'
             ? style.middle : this.props.task.priority === 'high' ? style.high : '';
 

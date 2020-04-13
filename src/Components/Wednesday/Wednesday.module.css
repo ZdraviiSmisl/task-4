@@ -1,0 +1,25 @@
+.wrap__inputRadio {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+
+.DARK_THEME {
+    background-color: black;
+color: #af06ff;
+}
+
+.LIGHT_THEME {
+    background-color: white;
+    color: #2f3aff
+}
+
+.GREEN_THEME {
+    background-color: greenyellow;
+    color: #ff6f1e;
+}
+

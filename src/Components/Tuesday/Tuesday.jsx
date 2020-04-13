@@ -1,17 +1,17 @@
 import React from 'react';
 import style from './Tuesday.module.css';
-import {LocalStorage} from "../../OutsideComponents/LocalStorage";
 import Preloader from "../../OutsideComponents/Preloader/Preloader";
 import AddNewItemForm from "./AddNewItemForm/AddNewItemForm";
 import Todolist from "./Todolist/Todolist";
 import {connect} from "react-redux";
+import {addTodoList, loadContent} from "../../Redux/reducers/todoListReducer";
 
 class Tuesday extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    nextTodolistId = 0;
+    /*nextTodolistId = 0;
     state = {
         todoLists: [
             {
@@ -21,12 +21,12 @@ class Tuesday extends React.Component {
         ],
         loading: true,
 
-    };
+    };*/
 
     componentDidMount() {
         setTimeout(() => {
             this.props.loadContent();
-            this.setState({loading: false});
+           /* this.setState({loading: false});*/
         }, 3000);
     }
 
@@ -39,13 +39,16 @@ class Tuesday extends React.Component {
             tasks: []
         };
         this.props.addTodoList(newTodoList);
-        this.nextTodolistId++;
+       /* this.nextTodolistId++;*/
     };
 
     render() {
 
         const todoListsElements = this.props.todoLists.map(
-            tl => <Todolist key={tl.id} id={tl.id} title={tl.title} tasks={tl.tasks}
+            tl => <Todolist key={tl.id}
+                            id={tl.id}
+                            title={tl.title}
+                            tasks={tl.tasks}
             />);
         return (
             <>
@@ -67,17 +70,34 @@ class Tuesday extends React.Component {
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ({todolists}) => {
 
     return {
-        todoLists: state.todoLists,
-        nextTodolistId: state.nextTodolistId,
-        loading: state.loading
+        todoLists: todolists.todoLists,
+        nextTodolistId: todolists.nextTodolistId,
+        loading: todolists.loading,
+        filterValue: todolists.filterValue
     }
 
 };
 
-let mapDispatchToProps = (dispatch) => {
+
+export default connect(mapStateToProps,{addTodoList, loadContent} )(Tuesday);
+
+
+/* saveState = () => {
+       LocalStorage.saveTodoLists(this.state);
+   };*/
+
+
+/* restoreState = () => {
+     let todoLists = LocalStorage.getTodoLists();
+     if (todoLists != null) {
+         this.setState(todoLists);
+     }
+ };*/
+
+/*let mapDispatchToProps = (dispatch) => {
     return {
         addTodoList: (newTodoList) => {
 
@@ -96,18 +116,4 @@ let mapDispatchToProps = (dispatch) => {
     }
 
     }
-};
-const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(Tuesday);
-export default ConnectedApp;
-
-/* saveState = () => {
-       LocalStorage.saveTodoLists(this.state);
-   };*/
-
-
-/* restoreState = () => {
-     let todoLists = LocalStorage.getTodoLists();
-     if (todoLists != null) {
-         this.setState(todoLists);
-     }
- };*/
+};*/

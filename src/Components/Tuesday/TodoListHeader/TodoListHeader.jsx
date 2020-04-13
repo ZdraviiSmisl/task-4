@@ -9,9 +9,9 @@ class TodoListHeader extends React.Component {
     };
     onAddTaskClick = () => {
         let newTitle = this.state.title;
-     this.setState({title:''});
+        this.setState({title: ''});
         if (newTitle === '') {
-            this.setState({error: true,inputEmptyDisable: true})
+            this.setState({error: true, inputEmptyDisable: true})
         } else {
             this.setState({error: false});
             this.props.addTask(newTitle);
@@ -23,7 +23,9 @@ class TodoListHeader extends React.Component {
     };
 
     onPressEnter = (e) => {
-        if (e.key === 'Enter') alert('ты клацнул по Enter');
+        if (e.key === 'Enter') {
+            this.onAddTaskClick();
+        }
 
     };
 
@@ -33,13 +35,15 @@ class TodoListHeader extends React.Component {
             <div className={style.todoListHeader}>
                 <h3 className={style.todoListHeaderTitle}>{this.props.title}</h3>
                 <div className={style.todoListNewTaskForm}>
-                    <input  onKeyPress={this.onPressEnter}
+                    <input onKeyPress={this.onPressEnter}
                            onChange={this.onAddText}
                            className={this.state.error ? style.error : ''}
                            type="text"
                            placeholder="New task name"
                            value={this.state.title}/>
-                    <button className={style.add} onClick={this.onAddTaskClick} disabled={this.state.inputEmptyDisable}>Add</button>
+                    <button className={style.add} onClick={this.onAddTaskClick}
+                            disabled={this.state.inputEmptyDisable}>Add
+                    </button>
 
                 </div>
             </div>

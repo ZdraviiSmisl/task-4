@@ -1,6 +1,3 @@
-.todoListTask.done {
-    opacity: 0.5;
-}
 
 .low {
     color: #ff7c55;
@@ -40,6 +37,11 @@
     align-items: center;
     height: 30px;
     width: 100%;
+    opacity: 1;
+}
+
+ .done {
+    opacity: 0.5;
 }
 
 .select__class {

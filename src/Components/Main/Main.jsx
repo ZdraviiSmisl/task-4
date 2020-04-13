@@ -5,6 +5,7 @@ import NavBar from './../Navbar/Navbar';
 import React from 'react';
 import style from './Main.module.css'
 import StartComponent from "../StartComponent/StartComponent";
+import Wednesday from "../Wednesday/Wednesday";
 
 class Main extends React.Component {
     state = {
@@ -37,7 +38,7 @@ class Main extends React.Component {
                     <div className={style.wrap__days}>        {/*  <Route path='/' render={() => <StartComponent/>}/>*/}
                         <Route path='/Monday' render={() => <Monday/>}/>
                         <Route path='/tuesday' render={() => <Tuesday/>}/>
-                        <Route path='/wednesday' render={() => <StartComponent/>}/>
+                        <Route path='/wednesday' render={() => <Wednesday/>}/>
                         <Route path='/thursday' render={() => <StartComponent/>}/>
                         <Route path='/friday' render={() => <StartComponent/>}/>
                     </div>

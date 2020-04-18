@@ -19,6 +19,6 @@
 
 .button_delete {
     position: absolute;
-    top: -2px;
-    right: 1px;
+    top: 5px;
+    right: 5px;
 }

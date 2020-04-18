@@ -5,14 +5,8 @@ export const DELETE_TASK = 'DELETE_TASK';
 export const DELETE_LIST = 'DELETE_LIST';
 export const SET_LOADING = 'SET_LOADING';
 export const SET_FILTER = 'SET_FILTER';
-
-export const addTodoList = (newTodoList) => ({type: ADD_TODOLIST, newTodoList});
-export const loadContent = () => ({type: SET_LOADING});
-export const add_Task = (newTask, todoListId) => ({type: ADD_TASK, newTask, todoListId});
-export const change_Task = (taskId, obj, todoListId) => ({type: CHANGE_TASK, taskId, obj, todoListId});
-export const deleteTask = (taskId, todoListId) => ({type: DELETE_TASK, taskId, todoListId});
-export const deleteList = (todoListId) => ({type: SET_LOADING, todoListId});
-export const setFilterValue = (newFilterValue) => ({type: SET_FILTER, newFilterValue});
+export const SET_TODOLISTS = 'SET_TODOLISTS';
+export const SET_TASKS = 'SET_TASKS';
 
 
 const initialState = {
@@ -25,13 +19,36 @@ const initialState = {
 const todoListReducer = (state = initialState, action) => {
 
   switch (action.type) {
+    case SET_TODOLISTS:
+      return {
+        ...state,
+        todoLists: action.todolists/*.map(todolist=>({...todolist,tasks:[]})*/
+      }
+
+    case SET_TASKS:
+
+      return {
+        ...state,
+        todoLists: state.todoLists.map(todolist => {
+          if (todolist.id === action.todoListId) {
+            return {
+              ...todolist, tasks: action.tasks
+
+            }
+          } else {
+            return todolist;
+          }
+        })
+      }
+
     case ADD_TODOLIST:
 
       return {
         ...state,
-        todoLists: [...state.todoLists, action.newTodoList],
-        nextTodolistId: state.nextTodolistId + 1
+        todoLists: [...state.todoLists, action.newTodoList]
+        /*nextTodolistId: state.nextTodolistId + 1*/
       };
+
     case SET_FILTER:
       return {
         ...state,
@@ -93,7 +110,7 @@ const todoListReducer = (state = initialState, action) => {
       return {
         ...state,
         todoLists: state.todoLists.filter(
-          l => l.id !== action.todoListId)
+          tl => tl.id !== action.todoListId)
       };
 
     case SET_LOADING:
@@ -104,5 +121,14 @@ const todoListReducer = (state = initialState, action) => {
   return state;
 };
 
+export const setTasks = (tasks, todoListId) => ({type: SET_TASKS, tasks, todoListId});
+export const setTodoLists = (todolists) => ({type: SET_TODOLISTS, todolists});
+export const addTodoList = (newTodoList) => ({type: ADD_TODOLIST, newTodoList});
+export const loadContent = () => ({type: SET_LOADING});
+export const add_Task = (newTask, todoListId) => ({type: ADD_TASK, newTask, todoListId});
+export const change_Task = (taskId, obj, todoListId) => ({type: CHANGE_TASK, taskId, obj, todoListId});
+export const deleteTask = (taskId, todoListId) => ({type: DELETE_TASK, taskId, todoListId});
+export const deleteList = (todoListId) => ({type: DELETE_LIST, todoListId});
+export const setFilterValue = (newFilterValue) => ({type: SET_FILTER, newFilterValue});
 
 export default todoListReducer;

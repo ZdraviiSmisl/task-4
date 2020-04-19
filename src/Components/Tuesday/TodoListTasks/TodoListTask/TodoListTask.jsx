@@ -8,7 +8,8 @@ class TodoListTask extends React.Component {
         editMode: false,
     };
     onIsDoneChanged = (e) => {
-        this.props.changeStatus(this.props.task.id, e.currentTarget.checked);
+        let status = e.currentTarget.checked ? 2 : 0
+        this.props.changeStatus(this.props.task.id, status);
     };
     activatedEditMode = () => {
         this.setState({editMode: true})
@@ -33,16 +34,14 @@ class TodoListTask extends React.Component {
             ? style.middle : this.props.task.priority === 'high' ? style.high : '';
 
         return (
-            /* <Tooltip placement="top-start" title={`created: ${this.props.task.created}
-              updated: ${this.props.task.updated}
-              finished: ${this.props.task.finished} `}>*/
+
             <CustomizedTooltips created={this.props.task.created}
                                 updated={this.props.task.updated}
                                 finished={this.props.task.finished}>
                 <div className={style.wrap_task}>
                     <div className={taskClass}>
                         <input className={style.checkbox__class} type='checkbox'
-                               checked={this.props.task.isDone}
+                               checked={this.props.task.status === 2}
                                onChange={this.onIsDoneChanged}
                         />
                         {this.state.editMode ?

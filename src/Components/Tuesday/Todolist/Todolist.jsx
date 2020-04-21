@@ -40,13 +40,15 @@ class Todolist extends React.Component {
 
   removeTask = (taskId) => {
     axios.delete(`https://social-network.samuraijs.com/api/1.1/todo-lists/${this.props.id}/tasks/${taskId}`,
-      {withCredentials:true,
-     headers:{'API-KEY': '9afe52b8-8bdf-4340-bf02-6f9a020ad3e6'} }
-      ).then(res=>{
-        debugger
-        if(res.data.resultCode===0) {
-          this.props.deleteTask(taskId, this.props.id)
-        } else  console.log(res.data.messages);
+      {
+        withCredentials: true,
+        headers: {'API-KEY': '9afe52b8-8bdf-4340-bf02-6f9a020ad3e6'}
+      }
+    ).then(res => {
+      debugger
+      if (res.data.resultCode === 0) {
+        this.props.deleteTask(taskId, this.props.id)
+      } else console.log(res.data.messages);
     })
   };
 
@@ -60,7 +62,7 @@ class Todolist extends React.Component {
       let newTask = res.data.data.item;
       if (res.data.resultCode === 0) {
         this.props.add_Task(newTask, this.props.id);
-      }else  console.log(res.data.messages)
+      } else console.log(res.data.messages)
     });
   };
 
@@ -75,12 +77,13 @@ class Todolist extends React.Component {
         debugger
         if (res.data.resultCode === 0) {
           this.props.deleteList(this.props.id);
-        }else  console.log(res.data.messages)
+        } else console.log(res.data.messages)
       })
 
   };
 
   changePriority = (taskId, priority) => {
+    debugger
     this.changeTask(taskId, {priority: priority})
   };
 
@@ -98,25 +101,26 @@ class Todolist extends React.Component {
     this.changeTask(taskId, {title: newTitle, updated: whenUpdatedTask + ''})
   };
 
-  changeTask = (taskId, obj ) => {
-    let currentTask = this.props.tasks.find(task => task.id === taskId );
-    let task ={...currentTask, ...obj };
-    axios.put (`https://social-network.samuraijs.com/api/1.1/todo-lists/${this.props.id}/tasks/${taskId}`
-  ,
-    { ...task},
-    {
-      withCredentials: true,
-        headers: { 'API-KEY': '9afe52b8-8bdf-4340-bf02-6f9a020ad3e6' }
+  changeTask = (taskId, obj) => {
+    debugger
+    let currentTask = this.props.tasks.find(task => task.id === taskId);
+    let task = {...currentTask, ...obj};
+    axios.put(`https://social-network.samuraijs.com/api/1.1/todo-lists/${this.props.id}/tasks/${taskId}`,
 
-    })
-  .then (res => {
-      if(res.data.resultCode === 0) {
-        this.props.change_Task (taskId, obj, this.props.id);
-      } else {
-        console.error(res.data.messages)
-      }
-      console.log (res.data );
-    });
+      {...task},
+      {
+        withCredentials: true,
+        headers: {'API-KEY': '9afe52b8-8bdf-4340-bf02-6f9a020ad3e6'}
+
+      })
+      .then(res => {
+        if (res.data.resultCode === 0) {
+          this.props.change_Task(taskId, obj, this.props.id);
+        } else {
+          console.error(res.data.messages)
+        }
+        console.log(res.data);
+      });
   };
 
   render() {

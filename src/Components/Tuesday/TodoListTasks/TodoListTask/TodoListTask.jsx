@@ -24,7 +24,7 @@ class TodoListTask extends React.Component {
         this.props.removeTask(this.props.task.id);
     };
     togglePriority = (e) => {
-        let priority = e.target.value;
+        let priority = Number(e.target.value);
         this.props.changePriority(this.props.task.id, priority)
     };
 
@@ -54,9 +54,9 @@ class TodoListTask extends React.Component {
                         }
                         <select className={style.select__class} value={this.props.task.priority}
                                 onChange={this.togglePriority}>
-                            <option value="high">high</option>
-                            <option value="low">low</option>
-                            <option value="middle">middle</option>
+                            <option value="2">high</option>
+                            <option value="0">low</option>
+                            <option value="1">middle</option>
                         </select>
                         <button className={style.delete__task} onClick={this.clickForDel}>X</button>
                     </div>

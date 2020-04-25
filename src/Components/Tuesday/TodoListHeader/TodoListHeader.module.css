@@ -1,28 +1,26 @@
-
 .todoListHeader {
 
 }
 
+.todoListTitle {
+    border: 1px solid forestgreen;
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 30px;
+    width: 100%;
+    opacity: 1;
+}
 .todoListHeaderTitle {
     display: flex;
     justify-content: center;
 }
 
-.todoListNewTaskForm {
-    display: flex;
-    width: 100%;
-    height: 30px;
-    margin-bottom: 10px;
-}
-.todoListNewTaskForm input {
-    width: 85%;
-}
-.error {
-    border-color: red;
+.button_delete {
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }
 
 
-.add {
-    width: 15%;
-}
 

@@ -11,14 +11,7 @@
     position: relative;
     box-sizing: border-box;
     border: 1px solid mediumspringgreen;
-
-
     padding: 5px;
 
 }
 
-.button_delete {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-}

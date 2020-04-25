@@ -1,6 +1,7 @@
 export const ADD_TODOLIST = 'ADD-TODOLIST';
 export const ADD_TASK = 'ADD-TASK';
 export const CHANGE_TASK = 'CHANGE_TASK';
+export const CHANGE_LIST = 'CHANGE_LIST';
 export const DELETE_TASK = 'DELETE_TASK';
 export const DELETE_LIST = 'DELETE_LIST';
 export const SET_LOADING = 'SET_LOADING';
@@ -19,10 +20,11 @@ const initialState = {
 const todoListReducer = (state = initialState, action) => {
 
   switch (action.type) {
+
     case SET_TODOLISTS:
       return {
         ...state,
-        todoLists: action.todolists/*.map(todolist=>({...todolist,tasks:[]})*/
+        todoLists: action.todolists
       }
 
     case SET_TASKS:
@@ -46,8 +48,20 @@ const todoListReducer = (state = initialState, action) => {
       return {
         ...state,
         todoLists: [...state.todoLists, action.newTodoList]
-        /*nextTodolistId: state.nextTodolistId + 1*/
       };
+    case CHANGE_LIST:
+      return {
+        ...state,
+        todoLists: state.todoLists.map(todolist => {
+          if (todolist.id === action.todoListId) {
+            return {
+              ...todolist, title: action.todoListTitle
+            }
+          } else {
+            return todolist
+          }
+        })
+      }
 
     case SET_FILTER:
       return {
@@ -127,6 +141,7 @@ export const addTodoList = (newTodoList) => ({type: ADD_TODOLIST, newTodoList});
 export const loadContent = () => ({type: SET_LOADING});
 export const add_Task = (newTask, todoListId) => ({type: ADD_TASK, newTask, todoListId});
 export const change_Task = (taskId, obj, todoListId) => ({type: CHANGE_TASK, taskId, obj, todoListId});
+export const changeList = (todoListId, todoListTitle) => ({type: CHANGE_LIST, todoListId, todoListTitle});
 export const deleteTask = (taskId, todoListId) => ({type: DELETE_TASK, taskId, todoListId});
 export const deleteList = (todoListId) => ({type: DELETE_LIST, todoListId});
 export const setFilterValue = (newFilterValue) => ({type: SET_FILTER, newFilterValue});

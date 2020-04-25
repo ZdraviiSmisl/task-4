@@ -5,24 +5,12 @@ import AddNewItemForm from "./AddNewItemForm/AddNewItemForm";
 import Todolist from "./Todolist/Todolist";
 import {connect} from "react-redux";
 import {addTodoList, loadContent, setTodoLists} from "../../Redux/reducers/todoListReducer";
-import axios from 'axios';
+import {api} from "../../DAL/api";
 
 class Tuesday extends React.Component {
   constructor(props) {
     super(props);
   }
-
-  /*nextTodolistId = 0;
-  state = {
-      todoLists: [
-          {
-              title: 'every day',
-              id: 1
-          }
-      ],
-      loading: true,
-
-  };*/
 
   componentDidMount() {
     setTimeout(() => {
@@ -30,33 +18,21 @@ class Tuesday extends React.Component {
       /* this.setState({loading: false});*/
     }, 3000);
 
-    axios.get("https://social-network.samuraijs.com/api/1.1/todo-lists", {withCredentials: true})
+    api.getTodoLists()
       .then(res => {
 
-          let todolists=res.data;
-          this.props.setTodoLists(todolists);
+        let todolists = res.data;
+        this.props.setTodoLists(todolists);
       });
   }
 
   onAddTodoList = (title) => {
-    /* const newTodoList = {
-         title: title,
-         id: this.props.nextTodolistId,
-         tasks: []
-     };*/
-    axios.post("https://social-network.samuraijs.com/api/1.1/todo-lists",
-      {title: title},
-      {
-        withCredentials: true,
-        headers: {'API-KEY': '9afe52b8-8bdf-4340-bf02-6f9a020ad3e6'}
-      })
+    api.createTodoList(title)
       .then(res => {
         let newTodoList = res.data.data.item;
         this.props.addTodoList(newTodoList);
       });
 
-
-    /* this.nextTodolistId++;*/
   };
 
   render() {
@@ -99,7 +75,7 @@ let mapStateToProps = ({todolists}) => {
 };
 
 
-export default connect(mapStateToProps, {addTodoList, loadContent,setTodoLists})(Tuesday);
+export default connect(mapStateToProps, {addTodoList, loadContent, setTodoLists})(Tuesday);
 
 
 /* saveState = () => {

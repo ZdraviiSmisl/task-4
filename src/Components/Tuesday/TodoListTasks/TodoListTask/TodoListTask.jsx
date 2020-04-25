@@ -6,23 +6,31 @@ import CustomizedTooltips from "../../../../OutsideComponents/Tooltip/Tooltipe";
 class TodoListTask extends React.Component {
   state = {
     editMode: false,
+    title:this.props.task.title
   };
+
   onIsDoneChanged = (e) => {
     let status = e.currentTarget.checked ? 2 : 0
     this.props.changeStatus(this.props.task.id, status);
   };
+
   activatedEditMode = () => {
     this.setState({editMode: true})
   };
+
   deactivatedEditMode = () => {
     this.setState({editMode: false})
+    this.props.changeTitle(this.props.task.id, this.state.title);
   };
+
   onTitleChanged = (e) => {
-    this.props.changeTitle(this.props.task.id, e.currentTarget.value);
+  this.setState({title:e.currentTarget.value})
   };
+
   clickForDel = () => {
     this.props.removeTask(this.props.task.id);
   };
+
   togglePriority = (e) => {
     let priority = Number(e.target.value);
     this.props.changePriority(this.props.task.id, priority)
@@ -47,10 +55,11 @@ class TodoListTask extends React.Component {
             {this.state.editMode ?
               <input className={style.input} autoFocus={true}
                      onBlur={this.deactivatedEditMode}
-                     onChange={this.onTitleChanged}/>
+                     onChange={this.onTitleChanged}
+              value={this.state.title}/>
               :
               <span onClick={this.activatedEditMode}
-                    className={changePriorityClass}>{this.props.task.id} {this.props.task.title} </span>
+                    className={changePriorityClass}>{this.props.task.id} {this.state.title} </span>
             }
             <select className={style.select__class} value={this.props.task.priority}
                     onChange={this.togglePriority}>

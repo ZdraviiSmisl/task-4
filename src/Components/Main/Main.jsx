@@ -35,7 +35,7 @@ class Main extends React.Component {
                         && <button className={style.b2}
                                    onClick={this.onClickIsHidden}>show</button>}
                     </div>
-                    <div className={style.wrap__days}>        {/*  <Route path='/' render={() => <StartComponent/>}/>*/}
+                    <div className={style.wrap__days}>
                         <Route path='/Monday' render={() => <Monday/>}/>
                         <Route path='/tuesday' render={() => <Tuesday/>}/>
                         <Route path='/wednesday' render={() => <Wednesday/>}/>

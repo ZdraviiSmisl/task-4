@@ -4,8 +4,9 @@ export const SET_STYLE = 'SET_STYLE';
 export const setStyle = (selectedTheme) => ({type: SET_STYLE, selectedTheme});
 
 const initialState = {
-  theme: 'DARK_THEME'
-
+  theme: 'DARK_THEME',
+  loading: true,
+ buttonStatus:false
 };
 
 const settingsReducer = (state = initialState, action) => {

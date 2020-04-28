@@ -23,3 +23,46 @@ color: #af06ff;
     color: #ff6f1e;
 }
 
+.infoServer__wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.infoServer__discr {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.infoServer__text {
+    width: 80%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+}
+.infoServer__panel {
+    width: 30%;
+
+}
+
+.wrap__inputRadio {
+    width: 100%;
+    align-items: center;
+
+}
+
+
+
+
+
+
+
+
+
+
+

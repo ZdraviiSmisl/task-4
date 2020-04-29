@@ -15,8 +15,19 @@ class Wednesday extends React.Component {
   state = {
     status: false,
     loading: false,
-    message: 'долби сюда',
+    message: 'new message',
     buttonStatus: false
+  }
+
+  functionRequest = () => {
+    this.setState({loading: true, buttonStatus: true}, async () => {
+      let response = await tryCatch(this.state.status);
+      this.setState({
+        message: response,
+        loading: false,
+        buttonStatus: false
+      })
+    })
   }
 
   toggleCheckbox = (e) => {
@@ -42,7 +53,7 @@ class Wednesday extends React.Component {
       <div className={style.infoServer__wrap}>
         <div className={style.infoServer__discr}>
           {this.state.loading ? <Preloader/> :
-            <div className={style.infoServer__text}>sucsses</div>
+            <div className={style.infoServer__text}>{this.state.message}</div>
           }
         </div>
         <div className={style.infoServer__panel}>
@@ -64,7 +75,7 @@ class Wednesday extends React.Component {
                                      onChange={this.setTheme}/></label>
 
             <input type='checkbox' checked={this.state.status} onChange={this.toggleCheckbox}/>
-            <button onClick={() => tryCatch(this.state.status)} disabled={this.state.buttonStatus}>Send</button>
+            <button onClick={this.functionRequest} disabled={this.state.buttonStatus}>Send</button>
 
           </div>
         </div>

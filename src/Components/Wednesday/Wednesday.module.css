@@ -43,7 +43,12 @@ color: #af06ff;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid;
+    border: 5px outset #ff6f60;
+    font-family: Geneva;
+    font-style: oblique;
+    font-size: 4vh;
+   color: #89ffe9;
+
 }
 .infoServer__panel {
     width: 30%;

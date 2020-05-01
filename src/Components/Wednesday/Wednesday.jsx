@@ -59,7 +59,8 @@ class Wednesday extends React.Component {
                                      onChange={this.setTheme}/></label>
 
             <input type='checkbox' checked={this.props.status} onChange={this.toggleCheckbox}/>
-            <button className={style.btn} onClick={this.functionRequest} disabled={this.props.buttonStatus}>Send</button>
+            <button className={style.btn} onClick={this.functionRequest} disabled={this.props.buttonStatus}>Send
+            </button>
 
           </div>
         </div>

@@ -4,8 +4,8 @@ import Preloader from "../../OutsideComponents/Preloader/Preloader";
 import AddNewItemForm from "./AddNewItemForm/AddNewItemForm";
 import Todolist from "./Todolist/Todolist";
 import {connect} from "react-redux";
-import {addTodoList, loadContent, setTodoLists} from "../../Redux/reducers/todoListReducer";
-import {api} from "../../DAL/api";
+import {Add_TodoList, get_TodoLists} from "../../Redux/reducers/todoListReducer";
+
 
 class Tuesday extends React.Component {
   constructor(props) {
@@ -13,25 +13,12 @@ class Tuesday extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.props.loadContent();
-      /* this.setState({loading: false});*/
-    }, 3000);
-
-    api.getTodoLists()
-      .then(res => {
-
-        let todolists = res.data;
-        this.props.setTodoLists(todolists);
-      });
+this.props.get_TodoLists();
   }
 
   onAddTodoList = (title) => {
-    api.createTodoList(title)
-      .then(res => {
-        let newTodoList = res.data.data.item;
-        this.props.addTodoList(newTodoList);
-      });
+    this.props.Add_TodoList(title)
+
 
   };
 
@@ -47,7 +34,7 @@ class Tuesday extends React.Component {
       <>
         {this.props.loading ? <Preloader/> :
           <div className={style.wrap}>
-            <div>
+            <div className={style.AddList}>
               <AddNewItemForm addItem={this.onAddTodoList}/>
             </div>
             <div className={style.wrap_todolists}>
@@ -75,7 +62,7 @@ let mapStateToProps = ({todolists}) => {
 };
 
 
-export default connect(mapStateToProps, {addTodoList, loadContent, setTodoLists})(Tuesday);
+export default connect(mapStateToProps, {Add_TodoList, get_TodoLists})(Tuesday);
 
 
 /* saveState = () => {

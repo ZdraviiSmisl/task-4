@@ -6,6 +6,10 @@
 
 }
 
+.wrapNavBar a {
+    text-decoration: none;
+}
+
 .item a {
     color: dodgerblue;
 
@@ -18,4 +22,5 @@
 
 .menu {
     width: 20%;
+
 }

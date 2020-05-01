@@ -23,6 +23,9 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+
+    border-right: 1px dashed blue;
+    width: 400px;
 }
 
 .wrap__days {
@@ -31,6 +34,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    width: 100%;
 }
 .wrap_wrap_navbar {
     height: 60%;

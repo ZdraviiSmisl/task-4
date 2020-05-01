@@ -18,6 +18,12 @@
     overflow-y: auto;
 }
 
+.AddList {
+    display: flex;
+    width: 30%;
+    padding-left: 400px;
+}
+
 .todoList {
     display: flex;
     flex-direction: column;

@@ -1,3 +1,5 @@
+import {api} from '../../DAL/api';
+
 export const ADD_TODOLIST = 'ADD-TODOLIST';
 export const ADD_TASK = 'ADD-TASK';
 export const CHANGE_TASK = 'CHANGE_TASK';
@@ -135,15 +137,106 @@ const todoListReducer = (state = initialState, action) => {
   return state;
 };
 
-export const setTasks = (tasks, todoListId) => ({type: SET_TASKS, tasks, todoListId});
-export const setTodoLists = (todolists) => ({type: SET_TODOLISTS, todolists});
-export const addTodoList = (newTodoList) => ({type: ADD_TODOLIST, newTodoList});
-export const loadContent = () => ({type: SET_LOADING});
-export const add_Task = (newTask, todoListId) => ({type: ADD_TASK, newTask, todoListId});
+const setTasks = (tasks, todoListId) => ({type: SET_TASKS, tasks, todoListId});
+const setTodoLists = (todolists) => ({type: SET_TODOLISTS, todolists});
+const addTodoList = (newTodoList) => ({type: ADD_TODOLIST, newTodoList});
+const loadContent = () => ({type: SET_LOADING});
+const add_Task = (newTask, todoListId) => ({type: ADD_TASK, newTask, todoListId});
 export const change_Task = (taskId, obj, todoListId) => ({type: CHANGE_TASK, taskId, obj, todoListId});
-export const changeList = (todoListId, todoListTitle) => ({type: CHANGE_LIST, todoListId, todoListTitle});
-export const deleteTask = (taskId, todoListId) => ({type: DELETE_TASK, taskId, todoListId});
-export const deleteList = (todoListId) => ({type: DELETE_LIST, todoListId});
+const changeList = (todoListId, todoListTitle) => ({type: CHANGE_LIST, todoListId, todoListTitle});
+const deleteTask = (taskId, todoListId) => ({type: DELETE_TASK, taskId, todoListId});
+const deleteList = (todoListId) => ({type: DELETE_LIST, todoListId});
 export const setFilterValue = (newFilterValue) => ({type: SET_FILTER, newFilterValue});
+
+
+export const get_TodoLists = () => {
+  return (dispatch) => {
+    setTimeout(() => {
+      dispatch(loadContent());
+    }, 3000);
+    api.getTodoLists()
+      .then(res => {
+        let todolists = res.data;
+        dispatch(setTodoLists(todolists));
+      });
+  }
+};
+
+
+export const get_Tusks = (todoListId) => {
+  return (dispatch) => {
+    api.getTasks(todoListId)
+      .then(res => {
+        let tasks = res.data.items;
+        dispatch(setTasks(tasks, todoListId));
+      })
+  }
+};
+export const Add_TodoList = (title) => {
+  return (dispatch) => {
+    api.createTodoList(title)
+      .then(res => {
+        let newTodoList = res.data.data.item;
+        dispatch(addTodoList(newTodoList));
+      });
+  }
+};
+export const delete_Task = (todoListId, taskId) => {
+  return (dispatch) => {
+    api.deleteTaskRequest(todoListId, taskId).then(res => {
+      if (res.data.resultCode === 0) {
+        dispatch(deleteTask(taskId, todoListId));
+      } else console.log(res.data.messages);
+    })
+  }
+};
+
+export const addTask = (newTitle, todoListId) => {
+  return (dispatch) => {
+    api.createTask(newTitle, todoListId).then(res => {
+      let newTask = res.data.data.item;
+      if (res.data.resultCode === 0) {
+        dispatch(add_Task(newTask, todoListId));
+      } else console.log(res.data.messages)
+    });
+  }
+};
+export const delete_List = (todoListId) => {
+  return (dispatch) => {
+    api.deleteListRequest(todoListId)
+      .then(res => {
+        if (res.data.resultCode === 0) {
+          dispatch(deleteList(todoListId));
+        } else console.log(res.data.messages)
+      })
+  }
+};
+export const change_List = (todoListId, newTitleList) => {
+  return (dispatch) => {
+    api.updateListRequest(todoListId, newTitleList).then(res => {
+      dispatch(changeList(todoListId, newTitleList));
+    })
+  }
+};
+
+export const change__Task = (taskId, obj, todoListId) => {
+  return (dispatch, getState) => {
+
+    let currentTask = getState()
+      .todolists.todoLists.find(list => list.id === todoListId)
+      .tasks.find(task => task.id === taskId)
+
+    let task = {...currentTask, ...obj};
+    api.updateTask(todoListId, task)
+      .then(res => {
+        if (res.data.resultCode === 0) {
+          dispatch(change_Task(taskId, obj, todoListId));
+        } else {
+          console.error(res.data.messages)
+        }
+      });
+  }
+}
+
 
 export default todoListReducer;

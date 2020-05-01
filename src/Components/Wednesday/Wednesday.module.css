@@ -10,7 +10,7 @@
 
 .DARK_THEME {
     background-color: black;
-color: #af06ff;
+    color: #af06ff;
 }
 
 .LIGHT_THEME {
@@ -30,11 +30,12 @@ color: #af06ff;
 }
 
 .infoServer__discr {
-    width: 70%;
     height: 100%;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
+    width: 100%;
+  /*  background: #fff;*/
 }
 
 .infoServer__text {
@@ -43,15 +44,56 @@ color: #af06ff;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 5px outset #ff6f60;
-    font-family: Geneva;
     font-style: oblique;
     font-size: 4vh;
-   color: #89ffe9;
+    color: #89ffe9;
+    padding: 25px;
 
 }
+
+/*===== анимация для блока*/
+.infoServer__text {
+    position: relative;
+    /*margin: 300px auto 0;
+    width: 500px;
+    height: 250px;*/
+    background: linear-gradient(0deg, #000, #272727);
+}
+
+.infoServer__text:before, .infoServer__text:after {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: -4px;
+    background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00, #ffff00, #ff0000, #fb0094,
+    #0000ff, #00ff00, #ffff00, #ff0000);
+    background-size: 400%;
+    width: calc(100% + 8px);
+    height: calc(100% + 8px);
+    z-index: -1;
+    animation: steam 20s linear infinite;
+}
+
+@keyframes steam {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.infoServer__text:after {
+    filter: blur(30px);
+}
+
+/*===== */
+
 .infoServer__panel {
-    width: 30%;
+    width: 400px;
 
 }
 
@@ -61,6 +103,12 @@ color: #af06ff;
 
 }
 
+.btn {
+    width: 100px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 30px;
+}
 
 
 

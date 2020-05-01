@@ -36,6 +36,7 @@ class Main extends React.Component {
                                    onClick={this.onClickIsHidden}>show</button>}
                     </div>
                     <div className={style.wrap__days}>
+                        <Route path='/Menu' render={() => <StartComponent/>}/>
                         <Route path='/Monday' render={() => <Monday/>}/>
                         <Route path='/tuesday' render={() => <Tuesday/>}/>
                         <Route path='/wednesday' render={() => <Wednesday/>}/>

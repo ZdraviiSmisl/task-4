@@ -1,8 +1,7 @@
 import React from 'react';
 import style from './Wednesday.module.css'
 import {connect} from "react-redux";
-import {setStyle} from "../../Redux/reducers/settingsReducer";
-import {tryCatch} from "../../DAL/api2";
+import {request_To_Server, setStyle, toggleStatus} from "../../Redux/reducers/settingsReducer";
 import Preloader from "../../OutsideComponents/Preloader/Preloader";
 
 
@@ -12,29 +11,14 @@ const GREEN_THEME = 'GREEN_THEME';
 
 class Wednesday extends React.Component {
 
-  state = {
-    status: false,
-    loading: false,
-    message: 'new message',
-    buttonStatus: false
-  }
 
   functionRequest = () => {
-    this.setState({loading: true, buttonStatus: true}, async () => {
-      let response = await tryCatch(this.state.status);
-      this.setState({
-        message: response,
-        loading: false,
-        buttonStatus: false
-      })
-    })
+    this.props.request_To_Server();
   }
 
   toggleCheckbox = (e) => {
     let status = e.currentTarget.checked;
-    this.setState({
-      status: status
-    })
+    this.props.toggleStatus(status);
   }
 
   setTheme = (e) => {
@@ -52,8 +36,8 @@ class Wednesday extends React.Component {
 
       <div className={style.infoServer__wrap}>
         <div className={style.infoServer__discr}>
-          {this.state.loading ? <Preloader/> :
-            <div className={style.infoServer__text}>{this.state.message}</div>
+          {this.props.loading ? <Preloader/> :
+            <div className={style.infoServer__text}>{this.props.message}</div>
           }
         </div>
         <div className={style.infoServer__panel}>
@@ -74,8 +58,8 @@ class Wednesday extends React.Component {
                                      checked={this.props.theme === GREEN_THEME}
                                      onChange={this.setTheme}/></label>
 
-            <input type='checkbox' checked={this.state.status} onChange={this.toggleCheckbox}/>
-            <button onClick={this.functionRequest} disabled={this.state.buttonStatus}>Send</button>
+            <input type='checkbox' checked={this.props.status} onChange={this.toggleCheckbox}/>
+            <button className={style.btn} onClick={this.functionRequest} disabled={this.props.buttonStatus}>Send</button>
 
           </div>
         </div>
@@ -86,10 +70,14 @@ class Wednesday extends React.Component {
 
 const mapStateToProps = ({settings}) => {
   return {
-    theme: settings.theme
+    theme: settings.theme,
+    loading: settings.loading,
+    message: settings.message,
+    buttonStatus: settings.buttonStatus,
+    status: settings.status
   }
 }
 
 
-export default connect(mapStateToProps, {setStyle})(Wednesday);
+export default connect(mapStateToProps, {setStyle, toggleStatus, request_To_Server})(Wednesday);
 

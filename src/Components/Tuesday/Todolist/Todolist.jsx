@@ -5,58 +5,39 @@ import TodoListTasks from "./../TodoListTasks/TodoListTasks";
 import TodoListFooter from "./../TodoListFooter/TodoListFooter";
 import {connect} from "react-redux";
 import {
-  add_Task,
-  change_Task, changeList,
-  deleteList,
-  deleteTask,
+  addTask, change__Task, change_List,
+  delete_List, delete_Task,
+  get_Tusks,
   setFilterValue,
-  setTasks
 } from "../../../Redux/reducers/todoListReducer";
-import {api} from "../../../DAL/api";
 import AddNewItemForm from "../AddNewItemForm/AddNewItemForm";
 
 class Todolist extends React.Component {
 
 
   componentDidMount() {
-    api.getTasks(this.props.id)
-      .then(res => {
-        let tasks = res.data.items;
-        this.props.setTasks(tasks, this.props.id);
-      })
+    this.props.get_Tusks(this.props.id);
+
   };
 
   removeTask = (taskId) => {
-    api.deleteTaskRequest(this.props.id, taskId).then(res => {
-      if (res.data.resultCode === 0) {
-        this.props.deleteTask(taskId, this.props.id)
-      } else console.log(res.data.messages);
-    })
+    this.props.delete_Task(this.props.id, taskId)
+
   };
 
   addTask = (newTitle) => {
-    api.createTask(newTitle, this.props.id).then(res => {
-      let newTask = res.data.data.item;
-      if (res.data.resultCode === 0) {
-        this.props.add_Task(newTask, this.props.id);
-      } else console.log(res.data.messages)
-    });
+    this.props.addTask(newTitle, this.props.id)
+
   };
 
   removeList = () => {
-    api.deleteListRequest(this.props.id)
-      .then(res => {
-        if (res.data.resultCode === 0) {
-          this.props.deleteList(this.props.id);
-        } else console.log(res.data.messages)
-      })
+    this.props.delete_List(this.props.id)
+
 
   };
-  changeTitleList=(newTitleList)=>{
-    api.updateListRequest(this.props.id,newTitleList).
-      then(res=>{
-     this.props.changeList(this.props.id,newTitleList)
-    })
+  changeTitleList = (newTitleList) => {
+    this.props.change_List(this.props.id, newTitleList)
+
   }
 
   changePriority = (taskId, priority) => {
@@ -78,17 +59,7 @@ class Todolist extends React.Component {
   };
 
   changeTask = (taskId, obj) => {
-    let currentTask = this.props.tasks.find(task => task.id === taskId);
-    let task = {...currentTask, ...obj};
-    api.updateTask(this.props.id, task)
-      .then(res => {
-        if (res.data.resultCode === 0) {
-          this.props.change_Task(taskId, obj, this.props.id);
-        } else {
-          console.error(res.data.messages)
-        }
-        console.log(res.data);
-      });
+    this.props.change__Task(taskId, obj, this.props.id);
   };
 
   render() {
@@ -96,7 +67,7 @@ class Todolist extends React.Component {
     return (
       < div className={style.wrap}>
         < div className={style.todoList}>
-          <TodoListHeader  title={this.props.title}
+          <TodoListHeader title={this.props.title}
                           changeTitleList={this.changeTitleList}
                           onDelete={this.removeList}/>
           <AddNewItemForm addItem={this.addTask}/>
@@ -134,7 +105,10 @@ let mapStateToProps = ({todolists}) => {
 }
 
 export default connect(mapStateToProps,
-  {add_Task, change_Task, deleteTask, deleteList,changeList,setFilterValue, setTasks})(Todolist);
+  {
+    addTask, change__Task, delete_Task,
+    delete_List, change_List, setFilterValue, get_Tusks
+  })(Todolist);
 
 
 /*let newTasks = this.state.tasks.map(t => {

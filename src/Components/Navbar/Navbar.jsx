@@ -14,8 +14,8 @@ class NavBar extends React.Component {
     render() {
         return (
             <nav className={style.wrapNavBar}>
-                <h3 className={style.menu}>MENU</h3>
-                <div className={style.item}>
+               <NavLink to ='/Menu' ><h3 className={style.menu}>MENU</h3></NavLink>
+              <div className={style.item}>
                     <NavLink to='/Monday' onClick={this.onSelected} activeClassName={style.active}>Monday</NavLink>
                 </div>
                 <div className={style.item}>

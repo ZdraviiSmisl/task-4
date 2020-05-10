@@ -1,5 +1,5 @@
 import {HashRouter, Route} from "react-router-dom";
-import Tuesday from './../Tuesday/Tuesday';
+import Tuesday from '../Tuesday/Tuesday';
 import Monday from './../Monday/Monday';
 import NavBar from './../Navbar/Navbar';
 import React from 'react';

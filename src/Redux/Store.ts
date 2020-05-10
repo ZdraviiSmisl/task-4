@@ -8,5 +8,8 @@ const reducers = combineReducers({
   settings: settingsReducer
 })
 
+type ReducerType= typeof reducers;
+export  type TodoStateType= ReturnType<ReducerType>
+
 const store = createStore(reducers, applyMiddleware(thunk));
 export default store;

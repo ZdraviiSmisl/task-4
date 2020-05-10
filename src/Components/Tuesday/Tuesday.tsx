@@ -1,22 +1,35 @@
-import React from 'react';
-import style from './Tuesday.module.css';
+import React from "react";
 import Preloader from "../../OutsideComponents/Preloader/Preloader";
 import AddNewItemForm from "./AddNewItemForm/AddNewItemForm";
 import Todolist from "./Todolist/Todolist";
 import {connect} from "react-redux";
 import {Add_TodoList, get_TodoLists} from "../../Redux/reducers/todoListReducer";
+import {TodoStateType} from "../../Redux/Store";
+import {TodoType} from "../types/entities";
+let style=require('./Tuesday.module.css') ;
+
+type MapStatePropsType={
+  todoLists: Array<TodoType>
+  nextTodolistId: number,
+  loading: boolean
+  filterValue: string
+}
 
 
-class Tuesday extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+type MapDispatchPropsType={
+  get_TodoLists:()=>void,
+  Add_TodoList:(title:string)=>void
+
+
+}
+class Tuesday extends React.Component<MapStatePropsType & MapDispatchPropsType> {
+
 
   componentDidMount() {
 this.props.get_TodoLists();
   }
 
-  onAddTodoList = (title) => {
+  onAddTodoList = (title:string) => {
     this.props.Add_TodoList(title)
 
 
@@ -50,7 +63,7 @@ this.props.get_TodoLists();
   }
 }
 
-let mapStateToProps = ({todolists}) => {
+let mapStateToProps = ({todolists}:TodoStateType):MapStatePropsType => {
 
   return {
     todoLists: todolists.todoLists,
@@ -62,38 +75,6 @@ let mapStateToProps = ({todolists}) => {
 };
 
 
-export default connect(mapStateToProps, {Add_TodoList, get_TodoLists})(Tuesday);
 
+export default connect<MapStatePropsType,MapDispatchPropsType,{},TodoStateType>(mapStateToProps, {Add_TodoList, get_TodoLists})(Tuesday);
 
-/* saveState = () => {
-       LocalStorage.saveTodoLists(this.state);
-   };*/
-
-
-/* restoreState = () => {
-     let todoLists = LocalStorage.getTodoLists();
-     if (todoLists != null) {
-         this.setState(todoLists);
-     }
- };*/
-
-/*let mapDispatchToProps = (dispatch) => {
-    return {
-        addTodoList: (newTodoList) => {
-
-            const action = {
-                type: 'ADD-TODOLIST',
-                newTodoList: newTodoList
-            };
-
-            dispatch(action)
-        },
-    loadContent:()=>{
-            const action={
-                type:'SET_LOADING'
-            };
-        dispatch(action)
-    }
-
-    }
-};*/

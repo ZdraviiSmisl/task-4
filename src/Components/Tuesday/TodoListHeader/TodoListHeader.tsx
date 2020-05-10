@@ -1,7 +1,18 @@
 import React from 'react';
-import style from './TodoListHeader.module.css'
+let style=require('./TodoListHeader.module.css')
 
-class TodoListHeader extends React.Component {
+type stateType={
+  editMode: boolean
+  title: string
+}
+
+type propsType={
+  title:string,
+  changeTitleList:(title:string)=>void,
+  onDelete:()=>void
+}
+
+class TodoListHeader extends React.Component<propsType,stateType> {
   state = {
     editMode: false,
     title: this.props.title,
@@ -16,7 +27,7 @@ class TodoListHeader extends React.Component {
     this.props.changeTitleList(this.state.title);
 
   }
-  onTitleListChanged = (e) => {
+  onTitleListChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({title: e.currentTarget.value})
   }
 
